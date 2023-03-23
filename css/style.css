@@ -22,6 +22,7 @@
   }
   
   .timer {
+    flex-wrap: wrap;
     display: flex;
     font-size: 55px;
     font-weight: bold;
@@ -29,6 +30,7 @@
   }
   
   .time {
+    flex-wrap: wrap;
     display: flex;
     align-items: center;
     justify-content: center;
