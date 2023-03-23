@@ -17,7 +17,28 @@ pauseBtn.addEventListener("click", pauseTimer);
 resumeBtn.addEventListener("click", resumeTimer);
 resetBtn.addEventListener("click", resetTimer);
 
+function hideButton(button){
+  button.style.display='none'
+}
+
+function showButton(button){
+  button.style.display='block'
+}
+
+window.addEventListener('load', ()=>{
+    showButton(startBtn)
+    hideButton(pauseBtn)
+    hideButton(resumeBtn)
+    hideButton(resetBtn)
+})
+
+
 function startTimer() {
+  hideButton(startBtn)
+  showButton(pauseBtn)
+  hideButton(resumeBtn)
+  showButton(resetBtn)
+
   interval = setInterval(() => {
     if (!isPaused) {
       milliseconds += 10;
@@ -39,18 +60,33 @@ function startTimer() {
 }
 
 function pauseTimer() {
+
   isPaused = true;
-  pauseBtn.style.display = "none";
-  resumeBtn.style.display = "inline-block";
+
+  hideButton(startBtn)
+  hideButton(pauseBtn)
+  showButton(resumeBtn)
+  showButton(resetBtn)
+
 }
 
 function resumeTimer() {
   isPaused = false;
-  resumeBtn.style.display = "none";
-  pauseBtn.style.display = "inline-block";
+  
+  hideButton(startBtn)
+  showButton(pauseBtn)
+  hideButton(resumeBtn)
+  showButton(resetBtn)
+
 }
 
 function resetTimer() {
+
+  showButton(startBtn)
+  hideButton(pauseBtn)
+  hideButton(resumeBtn)
+  hideButton(resetBtn)
+  
   clearInterval(interval);
   minutes = 0;
   seconds = 0;
@@ -59,9 +95,7 @@ function resetTimer() {
   minutesEl.innerHTML = "00";
   secondsEl.innerHTML = "00";
   millisecondsEl.innerHTML = "000";
-  startBtn.style.display = "inline-block";
-  pauseBtn.style.display = "none";
-  resumeBtn.style.display = "none";
+
 }
 
 function formatTime(time) {
